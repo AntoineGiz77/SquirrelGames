@@ -6,14 +6,11 @@ out/
 *.log
 .idea/
 *.iml
-.iml
 *.ipr
 *.iws
-out/
 build/
 target/
 .gradle/
-build/
 .DS_Store
 Thumbs.db
 ehthumbs.db
