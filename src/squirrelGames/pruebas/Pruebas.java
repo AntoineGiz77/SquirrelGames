@@ -57,30 +57,27 @@ public class Pruebas {
         }
 
         Random random = new Random();
-        int totalEliminados = (int) (participantesInscritos.size() * porcentajeEliminados);
-        int eliminadosContados = 0;
+        List<Participantes> eliminables = new ArrayList<>();
 
-        while (eliminadosContados < totalEliminados && !participantesInscritos.isEmpty()) {
-            int index = random.nextInt(participantesInscritos.size());
-            Participantes participante = participantesInscritos.get(index);
-
-            if (participante.getEstado() == EstadoParticipante.INFILTRADO) {
-                throw new InfiltradoNoEliminableException(
-                        "No se puede eliminar al participante infiltrado:",
-                        participante.getNombre(),
-                        participante.getNombreReal()
-                );
+        for (Participantes participante : participantesInscritos) {
+            if (participante.getEstado() != EstadoParticipante.INFILTRADO) {
+                eliminables.add(participante);
             }
+        }
 
-            participantesInscritos.remove(index);
-            eliminados.add(participante);
-            eliminadosContados++;
+        int totalEliminados = (int) (participantesInscritos.size() * porcentajeEliminados);
+        totalEliminados = Math.min(totalEliminados, eliminables.size()); 
+
+        for (int i = 0; i < totalEliminados; i++) {
+            int index = random.nextInt(eliminables.size());
+            Participantes eliminado = eliminables.remove(index); 
+            participantesInscritos.remove(eliminado); 
+            eliminados.add(eliminado);
         }
 
         vencedores.addAll(participantesInscritos);
-        participantesInscritos.clear();
 
-        return eliminadosContados;
+        return totalEliminados;
     }
 
     public double calcularPorcentajeExito() {
