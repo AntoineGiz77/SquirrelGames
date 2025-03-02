@@ -8,11 +8,9 @@ out/
 *.iml
 *.ipr
 *.iws
-out/
 build/
 target/
 .gradle/
-build/
 .DS_Store
 Thumbs.db
 ehthumbs.db
@@ -61,3 +59,7 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+# Default ignored files
+/shelf/
+/workspace.xml
