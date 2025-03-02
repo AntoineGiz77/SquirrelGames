@@ -92,13 +92,4 @@ public class Pruebas {
         return (vencedores.size() * 100.0) / (vencedores.size() + eliminados.size());
     }
 
-    @Override
-    public String toString() {
-        return "Prueba: " + nombre + "\n" +
-                "Descripción: " + descripcion + "\n" +
-                "Responsable: " + responsable.getNombre() + " " + responsable.getApellido() + "\n" +
-                "Inscritos: " + participantesInscritos.size() + "\n" +
-                "Eliminados: " + eliminados.size() + "\n" +
-                "Vencedores: " + vencedores.size();
-    }
 }
