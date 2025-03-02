@@ -3,6 +3,9 @@ package squirrelGames.pruebas;
 import squirrelGames.integrantesJuego.EstadoParticipante;
 import squirrelGames.integrantesJuego.Participantes;
 import squirrelGames.exceptions.InfiltradoNoEliminableException;
+import squirrelGames.exceptions.JugadorDuplicadoException;
+import squirrelGames.exceptions.PorcentajeInvalidoException;
+import squirrelGames.exceptions.SimulacionNoPermitidaException;
 import squirrelGames.integrantesJuego.pinkGuardsRanks.Manager;
 
 import java.util.ArrayList;
@@ -50,13 +53,22 @@ public class Pruebas {
         return responsable;
     }
 
-    public void inscribirParticipante(Participantes participante) {
+    public void inscribirParticipante(Participantes participante) throws JugadorDuplicadoException {
+    	for (Participantes p : participantesInscritos) {
+            if (p.getId().equals(participante.getId())) { 
+                throw new JugadorDuplicadoException("El jugador con ID " + participante.getId() + " ya está inscrito.");
+            }
+        }
         participantesInscritos.add(participante);
     }
 
-    public int simular(double porcentajeEliminados) throws InfiltradoNoEliminableException {
+    public int simular(double porcentajeEliminados) throws InfiltradoNoEliminableException, SimulacionNoPermitidaException, PorcentajeInvalidoException {
         if (responsable == null) {
-            throw new IllegalStateException("No se puede simular la prueba sin un Manager asignado.");
+            throw new SimulacionNoPermitidaException("No se puede simular la prueba sin un Manager asignado.");
+        }
+        
+        if (porcentajeEliminados < 0 || porcentajeEliminados > 1) {
+            throw new PorcentajeInvalidoException("El porcentaje de eliminados debe estar entre 0 y 1.");
         }
 
 
@@ -65,9 +77,10 @@ public class Pruebas {
         List<Participantes> eliminables = new ArrayList<>();
 
         for (Participantes participante : participantesInscritos) {
-            if (participante.getEstado() != EstadoParticipante.INFILTRADO) {
-                eliminables.add(participante);
-            }
+            if (participante.getEstado() == EstadoParticipante.INFILTRADO) {
+            	throw new InfiltradoNoEliminableException("No se puede eliminar al participante infiltrado:",participante.getNombre(),participante.getNombreReal());
+            	}
+            eliminables.add(participante);
         }
 
         int totalEliminados = (int) (participantesInscritos.size() * porcentajeEliminados);

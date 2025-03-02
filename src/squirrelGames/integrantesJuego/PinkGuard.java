@@ -51,10 +51,31 @@ public class PinkGuard {
         if (supervisor == null) {
             throw new SupervisorInvalidoException("El supervisor no puede ser nulo.");
         }
-        if (supervisor.getRango().equals(this.getRango())) {
-            throw new SupervisorInvalidoException("No puedes asignar un supervisor del mismo rango.");
+
+        String rangoSupervisor = supervisor.getRango();
+        String rangoSubordinado = this.getRango();
+
+        int nivelSupervisor = obtenerNivelRango(rangoSupervisor);
+        int nivelSubordinado = obtenerNivelRango(rangoSubordinado);
+
+        if (nivelSupervisor <= nivelSubordinado) {
+            throw new SupervisorInvalidoException(
+                "El supervisor debe ser de un rango superior. " +
+                "Intentaste asignar a un " + rangoSupervisor + " como supervisor de un " + rangoSubordinado + "."
+            );
         }
+
         this.supervisor = supervisor;
     }
+
+    private int obtenerNivelRango(String rango) {
+        return switch (rango.toLowerCase()) {
+            case "worker" -> 1;
+            case "soldier" -> 2;
+            case "manager" -> 3;
+            default -> 0; 
+        };
+    }
+
     
 }
