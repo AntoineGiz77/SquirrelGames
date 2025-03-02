@@ -5,7 +5,7 @@ import squirrelGames.exceptions.SupervisorInvalidoException;
 public class PinkGuard {
     private String id;
     private String nombre;
-    private String apellidos;
+    protected String apellidos;
     private String rango;
     private PinkGuard supervisor;
 

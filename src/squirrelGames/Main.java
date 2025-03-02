@@ -130,6 +130,16 @@ public class Main {
             System.out.println("Descripción: " + prueba.getDescripcion());
             System.out.println("Número de eliminados: " + eliminados);
             System.out.println("Porcentaje de éxito: " + prueba.calcularPorcentajeExito() + "%");
+            System.out.println("Eliminados:");
+
+            for (Participantes eliminado : prueba.getEliminados()) {
+                System.out.println("- " + eliminado.getNombre() + " " + eliminado.getApellidos());
+
+            }
+            System.out.println("Vencedores:");
+            for (Participantes vencedor : prueba.getVencedores()) {
+                System.out.println("- " + vencedor.getNombre() + " " + vencedor.getApellidos());
+            }
             System.out.println();
         } catch (InfiltradoNoEliminableException e) {
 

@@ -18,6 +18,12 @@ public class Manager extends PinkGuard {
         this.arma = this.arma;
         this.municion = municion;
         this.equipo = new ArrayList<>();
+        this.apellidos = apellidos;
+    }
+
+    public String getApellido() {
+
+        return apellidos;
 
     }
 }

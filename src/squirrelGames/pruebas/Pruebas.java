@@ -21,6 +21,9 @@ public class Pruebas {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.responsable = responsable;
+        this.participantesInscritos = new ArrayList<>();
+        this.eliminados = new ArrayList<>();
+        this.vencedores = new ArrayList<>();
     }
 
     public String getNombre() {
@@ -56,31 +59,30 @@ public class Pruebas {
             throw new IllegalStateException("No se puede simular la prueba sin un Manager asignado.");
         }
 
+
+
         Random random = new Random();
-        int totalEliminados = (int) (participantesInscritos.size() * porcentajeEliminados);
-        int eliminadosContados = 0;
+        List<Participantes> eliminables = new ArrayList<>();
 
-        while (eliminadosContados < totalEliminados && !participantesInscritos.isEmpty()) {
-            int index = random.nextInt(participantesInscritos.size());
-            Participantes participante = participantesInscritos.get(index);
-
-            if (participante.getEstado() == EstadoParticipante.INFILTRADO) {
-                throw new InfiltradoNoEliminableException(
-                        "No se puede eliminar al participante infiltrado:",
-                        participante.getNombre(),
-                        participante.getNombreReal()
-                );
+        for (Participantes participante : participantesInscritos) {
+            if (participante.getEstado() != EstadoParticipante.INFILTRADO) {
+                eliminables.add(participante);
             }
+        }
 
-            participantesInscritos.remove(index);
-            eliminados.add(participante);
-            eliminadosContados++;
+        int totalEliminados = (int) (participantesInscritos.size() * porcentajeEliminados);
+        totalEliminados = Math.min(totalEliminados, eliminables.size());
+
+        for (int i = 0; i < totalEliminados; i++) {
+            int index = random.nextInt(eliminables.size());
+            Participantes eliminado = eliminables.remove(index);
+            participantesInscritos.remove(eliminado);
+            eliminados.add(eliminado);
         }
 
         vencedores.addAll(participantesInscritos);
-        participantesInscritos.clear();
 
-        return eliminadosContados;
+        return totalEliminados;
     }
 
     public double calcularPorcentajeExito() {
@@ -88,5 +90,15 @@ public class Pruebas {
             return 0;
         }
         return (vencedores.size() * 100.0) / (vencedores.size() + eliminados.size());
+    }
+
+    @Override
+    public String toString() {
+        return "Prueba: " + nombre + "\n" +
+                "Descripción: " + descripcion + "\n" +
+                "Responsable: " + responsable.getNombre() + " " + responsable.getApellido() + "\n" +
+                "Inscritos: " + participantesInscritos.size() + "\n" +
+                "Eliminados: " + eliminados.size() + "\n" +
+                "Vencedores: " + vencedores.size();
     }
 }
