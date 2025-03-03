@@ -1,6 +1,6 @@
 Software para la gestión de los juegos anuales organizados por **Squirrel Games**. Este sistema permite administrar los participantes, empleados (Pink Guards) y las pruebas, asegurando un desarrollo fluido y justo de las competencias.
 
-## 📌 **Características Principales**
+## **Características Principales**
 
 - **Gestión de ediciones anuales:** Administra los años, ubicaciones y eventos.
 - **Administración de participantes:** Controla la inscripción, deudas y detecta infiltrados.
@@ -8,7 +8,7 @@ Software para la gestión de los juegos anuales organizados por **Squirrel Games
 - **Gestión de pruebas:** Permite simular pruebas, calcular el éxito y gestionar eliminaciones.
 - **Validaciones y excepciones personalizadas:** Asegura que todas las reglas del juego sean respetadas mediante excepciones.
 
-## 🚀 **Instalación**
+## **Instalación**
 
 ### Prerrequisitos
 
@@ -32,14 +32,14 @@ Asegúrate de tener lo siguiente antes de instalar el sistema:
    java Main
    ```
 
-## 📚 **Uso del Sistema**
+## **Uso del Sistema**
 
 1. **Registrar una nueva edición de los juegos.**
 2. **Agregar participantes y Pink Guards** (empleados).
 3. **Asignar pruebas** y realizar simulaciones.
 4. **Controlar eliminaciones** y verificar infiltrados.
 
-## ❗ **Excepciones Implementadas**
+## **Excepciones Implementadas**
 
 El sistema maneja excepciones personalizadas para garantizar la validez de los datos y las reglas del juego:
 
@@ -51,7 +51,7 @@ El sistema maneja excepciones personalizadas para garantizar la validez de los d
 - **SimulacionNoPermitidaException:** Evita simulaciones en condiciones incorrectas.
 - **SupervisorInvalidoException:** Controla asignaciones de supervisores no permitidas.
 
-## 🏆 **Gestión de Juegos**
+## **Gestión de Juegos**
 
 La clase `Juegos` se encarga de gestionar las ediciones anuales del evento, incluyendo:
 
@@ -67,7 +67,7 @@ La clase `Juegos` se encarga de gestionar las ediciones anuales del evento, incl
 - `agregarPruebas(Pruebas prueba)`: Agrega una nueva prueba.
 - Métodos `get` para acceder a la información de los juegos.
 
-## 🛡️ **Jerarquía del Personal (Pink Guards)**
+## **Jerarquía del Personal (Pink Guards)**
 
 Los empleados están organizados en tres rangos:
 
@@ -80,7 +80,7 @@ Los empleados están organizados en tres rangos:
 - **ArmasManager.java** (para Managers)
 - **ArmasSoldier.java** (para Soldiers)
 
-## 📁 **Estructura del Proyecto**
+## **Estructura del Proyecto**
 
 ```
 /squirrel-games
@@ -115,16 +115,16 @@ Los empleados están organizados en tres rangos:
 │── .gitignore
 ```
 
-## 🏰 **Tecnologías Utilizadas**
+## **Tecnologías Utilizadas**
 
 - **Java 23**
 - **JUnit** (para pruebas unitarias)
 
-## 📝 **Licencia**
+## **Licencia**
 
 Este proyecto está bajo la licencia **MIT**.
 
-## 📞 **Contacto**
+## **Contacto**
 
 - 💙 GitHub: [https://github.com/sargon494](https://github.com/sargon494)
 - 💙 GitHub: [https://github.com/AntoineGiz77](https://github.com/AntoineGiz77)
