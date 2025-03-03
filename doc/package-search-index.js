@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"squirrelGames"},{"l":"squirrelGames.exceptions"},{"l":"squirrelGames.integrantesJuego"},{"l":"squirrelGames.integrantesJuego.pinkGuardsRanks"},{"l":"squirrelGames.juegos"},{"l":"squirrelGames.pruebas"}];updateSearchResults();
