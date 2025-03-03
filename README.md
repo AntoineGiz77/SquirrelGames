@@ -1,5 +1,3 @@
-# 🎮 **Squirrel Games - Sistema de Gestión de Juegos Anuales** 🎮
-
 Software para la gestión de los juegos anuales organizados por **Squirrel Games**. Este sistema permite administrar los participantes, empleados (Pink Guards) y las pruebas, asegurando un desarrollo fluido y justo de las competencias.
 
 ## 📌 **Características Principales**
@@ -34,7 +32,7 @@ Asegúrate de tener lo siguiente antes de instalar el sistema:
    java Main
    ```
 
-## 📖 **Uso del Sistema**
+## 📚 **Uso del Sistema**
 
 1. **Registrar una nueva edición de los juegos.**
 2. **Agregar participantes y Pink Guards** (empleados).
@@ -117,11 +115,10 @@ Los empleados están organizados en tres rangos:
 │── .gitignore
 ```
 
-## 🏗️ **Tecnologías Utilizadas**
+## 🏰 **Tecnologías Utilizadas**
 
 - **Java 23**
 - **JUnit** (para pruebas unitarias)
-
 
 ## 📝 **Licencia**
 
@@ -129,8 +126,6 @@ Este proyecto está bajo la licencia **MIT**.
 
 ## 📞 **Contacto**
 
-- 🐙 GitHub: [https://github.com/usuario]([(https://github.com/sargon494))
-- 🐙 GitHub: [https://github.com/usuario]((https://github.com/AntoineGiz77))
-- 🐙 GitHub: [https://github.com/usuario]((https://github.com/Nestorrr11))
-
-
+- 💙 GitHub: [https://github.com/sargon494](https://github.com/sargon494)
+- 💙 GitHub: [https://github.com/AntoineGiz77](https://github.com/AntoineGiz77)
+- 💙 GitHub: [https://github.com/Nestorrr11](https://github.com/Nestorrr11)
