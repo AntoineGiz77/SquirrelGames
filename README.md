@@ -114,10 +114,6 @@ Los empleados están organizados en tres rangos:
 - **Java 23**
 - **JUnit** (para pruebas unitarias)
 
-## **Licencia**
-
-Este proyecto está bajo la licencia **MIT**.
-
 ## **Contacto**
 
 - 💙 GitHub: Felipe - [https://github.com/sargon494](https://github.com/sargon494)
