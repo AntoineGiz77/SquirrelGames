@@ -23,19 +23,18 @@ Asegúrate de tener lo siguiente antes de instalar el sistema:
    git clone https://github.com/usuario/squirrel-games.git
    ```
 2. Navega a la carpeta del proyecto:
-   ```bash
    cd squirrel-games
-   ```
-3. Compila y ejecuta el programa:
-   ```bash
-   javac Main.java
-   java Main
-   ```
+
+3. Compila el proyecto usando javac:
+   javac -d bin -cp src $(find src -name "*.java")
+
+4. Ejecuta el programa:
+   java -cp bin squirrelGames.Main
 
 ## **Uso del Sistema**
 
 1. **Registrar una nueva edición de los juegos.**
-2. **Agregar participantes y Pink Guards** (empleados).
+2. **Agregar participantes y empleados (Pink Guards).**
 3. **Asignar pruebas** y realizar simulaciones.
 4. **Controlar eliminaciones** y verificar infiltrados.
 
@@ -43,8 +42,6 @@ Asegúrate de tener lo siguiente antes de instalar el sistema:
 
 El sistema maneja excepciones personalizadas para garantizar la validez de los datos y las reglas del juego:
 
-- **DatoInvalidoException:** Se lanza cuando un dato ingresado no cumple con los requisitos.
-- **IdentificadorUnicoException:** Impide duplicar identificadores únicos.
 - **InfiltradoNoEliminableException:** No permite eliminar infiltrados en situaciones restringidas.
 - **JugadorDuplicadoException:** Detecta intentos de añadir jugadores ya existentes.
 - **PorcentajeInvalidoException:** Para cuando un porcentaje ingresado es inválido.
@@ -64,7 +61,7 @@ La clase `Juegos` se encarga de gestionar las ediciones anuales del evento, incl
 
 - `agregarParticipante(Participantes participante)`: Agrega un nuevo participante.
 - `agregarPinkGuard(PinkGuard pinkGuard)`: Agrega un nuevo Pink Guard.
-- `agregarPruebas(Pruebas prueba)`: Agrega una nueva prueba.
+- `agregarPruebas(Pruebas pruebas)`: Agrega una nueva prueba.
 - Métodos `get` para acceder a la información de los juegos.
 
 ## **Jerarquía del Personal (Pink Guards)**
@@ -83,34 +80,31 @@ Los empleados están organizados en tres rangos:
 ## **Estructura del Proyecto**
 
 ```
-/squirrel-games
+/SquirrelGames
 │── /src
-│   ├── Main.java
-│   ├── models/
-│   ├── controllers/
-│   ├── exceptions/
-│   │   ├── DatoInvalidoException.java
-│   │   ├── IdentificadorUnicoException.java
-│   │   ├── InfiltradoNoEliminableException.java
-│   │   ├── JugadorDuplicadoException.java
-│   │   ├── PorcentajeInvalidoException.java
-│   │   ├── SimulacionNoPermitidaException.java
-│   │   ├── SupervisorInvalidoException.java
-│   ├── guards/
-│   │   ├── Worker.java
-│   │   ├── Soldier.java
-│   │   ├── Manager.java
-│   │   ├── ArmasSoldier.java
-│   │   ├── ArmasManager.java
-│   ├── participants/
-│   │   ├── Participantes.java
-│   │   ├── EstadoParticipante.java
-│   ├── juegos/
-│   │   ├── Juegos.java
-│   ├── pruebas/
-│   │   ├── Pruebas.java
-│   ├── utils/
-│── /docs
+│   ├── squirrelGames/
+│   │   ├── Main.java
+│   │   ├── exceptions/
+│   │   │   ├── InfiltradoNoEliminableException.java
+│   │   │   ├── JugadorDuplicadoException.java
+│   │   │   ├── PorcentajeInvalidoException.java
+│   │   │   ├── SimulacionNoPermitidaException.java
+│   │   │   ├── SupervisorInvalidoException.java
+│   │   ├── integrantesJuego/
+│   │   │   ├── EstadoParticipante.java
+│   │   │   ├── Participantes.java
+│   │   │   ├── PinkGuard.java
+│   │   │   ├── pinkGuardsRanks/
+│   │   │   │   ├── ArmasManager.java
+│   │   │   │   ├── ArmasSoldier.java
+│   │   │   │   ├── Manager.java
+│   │   │   │   ├── Soldier.java
+│   │   │   │   ├── Worker.java
+│   │   ├── juegos/
+│   │   │   ├── Juegos.java
+│   │   ├── pruebas/
+│   │   │   ├── Pruebas.java
+│── /doc  (Javadoc y documentación)
 │── README.md
 │── .gitignore
 ```
@@ -126,6 +120,6 @@ Este proyecto está bajo la licencia **MIT**.
 
 ## **Contacto**
 
-- 💙 GitHub: [https://github.com/sargon494](https://github.com/sargon494)
-- 💙 GitHub: [https://github.com/AntoineGiz77](https://github.com/AntoineGiz77)
-- 💙 GitHub: [https://github.com/Nestorrr11](https://github.com/Nestorrr11)
+- 💙 GitHub: Felipe - [https://github.com/sargon494](https://github.com/sargon494)
+- 💙 GitHub: Antoine - [https://github.com/AntoineGiz77](https://github.com/AntoineGiz77)
+- 💙 GitHub: Nestor - [https://github.com/Nestorrr11](https://github.com/Nestorrr11)
