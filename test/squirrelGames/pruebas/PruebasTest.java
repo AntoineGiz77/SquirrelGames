@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import squirrelGames.exceptions.InfiltradoNoEliminableException;
 import squirrelGames.exceptions.JugadorDuplicadoException;
 import squirrelGames.exceptions.PorcentajeInvalidoException;
+import squirrelGames.exceptions.SimulacionNoPermitidaException;
 import squirrelGames.integrantesJuego.EstadoParticipante;
 import squirrelGames.integrantesJuego.Participantes;
 import squirrelGames.integrantesJuego.pinkGuardsRanks.Manager;
@@ -18,6 +19,7 @@ import squirrelGames.integrantesJuego.pinkGuardsRanks.Manager;
 class PruebasTest {
 
 private Pruebas prueba;
+private Pruebas pruebasinmanager;
 private Manager manager1;
 	
 
@@ -25,6 +27,7 @@ private Manager manager1;
 void setup() {
 	manager1 = new Manager ("Jefazo", "Cristiano" , "Ronaldo dos Santos", "WessonModel10" , 50);
 	prueba = new Pruebas ("Gol en porteria", "Prueba de punteria", manager1);
+	pruebasinmanager = new Pruebas("Pruebas de testeo sin un manager" , "Prueba testeo", null);
 }
 
 //Testeo para crear un participante
@@ -46,18 +49,23 @@ void inscribir1Participanteyaexistente() throws JugadorDuplicadoException {
 
 //Testeo para comprobar la excepcion del porcentaje
 @Test
-void simularPruebaConPorcentajeInvalido() {
+void simularPruebaConPorcentajeInvalido() throws PorcentajeInvalidoException {
 	assertThrows(PorcentajeInvalidoException.class, () -> prueba.simular(1.5));
 }
 
 //Testeo para evitar eliminar un infiltrado y que salte un Exception
 @Test
-void testEliminarInfiltradoLanzaExcepcion() throws JugadorDuplicadoException {
+void testEliminarInfiltradoLanzaExcepcion() throws JugadorDuplicadoException, InfiltradoNoEliminableException {
  
     Participantes infiltrado = new Participantes("101", "Lionel", "Andres Messi", LocalDate.of(1987, 6, 24), "Masculino", "Argentino", 50000000, EstadoParticipante.INFILTRADO, "Infiltrado");
     prueba.inscribirParticipante(infiltrado);
     assertTrue(prueba.getParticipantesInscritos().contains(infiltrado));
     assertThrows(InfiltradoNoEliminableException.class, () -> prueba.simular(1.0));
+}
 
+//Testeo para probar la excepcion Simulacion no permitida (no hay manager)
+@Test 
+void simularSinManagerLanzaExcepcion() throws SimulacionNoPermitidaException {
+    assertThrows(SimulacionNoPermitidaException.class, () -> pruebasinmanager.simular(0.5));
 }
 }
