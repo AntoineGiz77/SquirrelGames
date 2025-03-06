@@ -140,3 +140,4 @@ SquirrelGames
 - 💙 GitHub: Antoine - [https://github.com/AntoineGiz77](https://github.com/AntoineGiz77)
 - 💙 GitHub: Nestor - [https://github.com/Nestorrr11](https://github.com/Nestorrr11)
 - 💙 GitHub: David - [https://github.com/DavidPP161](https://github.com/DavidPP161)
+- 💙 GitHub: Alejandro - [https://github.com/0Budiimiir6](https://github.com/0Budiimiir6).
