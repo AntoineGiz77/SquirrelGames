@@ -110,7 +110,7 @@ SquirrelGames
 │   ├── SquirrelGames
 │   ├── index.html
 │   ├── jacoco-sessions.html
-│── doc (Documentación y Javadoc)
+│── docs (Documentación y Javadoc)
 │   ├── squirrelGames
 │── test (Pruebas Unitarias)
 │   ├── squirrelGames
