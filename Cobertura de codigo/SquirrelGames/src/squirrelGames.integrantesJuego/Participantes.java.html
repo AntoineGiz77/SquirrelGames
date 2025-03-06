@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Participantes.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (1) (6 mar 2025 12:34:12)</a> &gt; <a href="../../index.html" class="el_group">SquirrelGames</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">squirrelGames.integrantesJuego</a> &gt; <span class="el_source">Participantes.java</span></div><h1>Participantes.java</h1><pre class="source lang-java linenums">package squirrelGames.integrantesJuego;
+
+import squirrelGames.exceptions.InfiltradoNoEliminableException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+/**
+ * Clase que representa a un participante dentro del juego.
+ * Los participantes tienen diversos atributos como nombre, fecha de nacimiento, 
+ * deuda y estado, entre otros. Esta clase también incluye un método para eliminar 
+ * a los participantes, teniendo en cuenta su estado.
+ */
+public class Participantes {
+	
+	/**
+	 * Apellidos del participante.
+	 */
+	private String apellidos;
+
+	/**
+	 * Fecha de nacimiento del participante.
+	 */
+	private LocalDate birthDate;
+
+	/**
+	 * Deuda del participante.
+	 */
+	private double deuda;
+
+	/**
+	 * Estado del participante (activo, eliminado, etc.).
+	 */
+	private EstadoParticipante estado;
+
+	/**
+	 * Género del participante.
+	 */
+	private String genero;
+
+	/**
+	 * Identificador único del participante.
+	 */
+	private String id;
+
+	/**
+	 * Nacionalidad del participante.
+	 */
+	private String nacionalidad;
+
+	/**
+	 * Nombre del participante.
+	 */
+	private String nombre;
+
+	/**
+	 * Nombre real del participante.
+	 */
+	private String nombreReal;
+
+
+    /**
+     * Constructor de la clase Participantes.
+     * 
+     * @param id El identificador único del participante.
+     * @param nombre El nombre del participante.
+     * @param apellidos Los apellidos del participante.
+     * @param birthDate La fecha de nacimiento del participante.
+     * @param genero El género del participante.
+     * @param nacionalidad La nacionalidad del participante.
+     * @param deuda La deuda del participante.
+     * @param estado El estado del participante (por ejemplo, INFILTRADO o NORMAL).
+     * @param nombreReal El nombre real del participante, utilizado solo si el estado es INFILTRADO.
+     */
+<span class="fc" id="L74">    public Participantes(String id, String nombre, String apellidos, LocalDate birthDate, String genero, String nacionalidad, double deuda, EstadoParticipante estado, String nombreReal) {</span>
+<span class="fc" id="L75">        this.id = id;</span>
+<span class="fc" id="L76">        this.nombre = nombre;</span>
+<span class="fc" id="L77">        this.apellidos = apellidos;</span>
+<span class="fc" id="L78">        this.birthDate = birthDate;</span>
+<span class="fc" id="L79">        this.genero = genero;</span>
+<span class="fc" id="L80">        this.nacionalidad = nacionalidad;</span>
+<span class="fc" id="L81">        this.deuda = deuda;</span>
+<span class="fc" id="L82">        this.estado = estado;</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">        this.nombreReal = (estado == EstadoParticipante.INFILTRADO) ? nombreReal : null;</span>
+<span class="fc" id="L84">    }</span>
+
+    /**
+     * Obtiene el identificador único del participante.
+     * 
+     * @return El identificador del participante.
+     */
+    public String getId() {
+<span class="fc" id="L92">        return id;</span>
+    }
+
+    /**
+     * Obtiene el nombre del participante.
+     * 
+     * @return El nombre del participante.
+     */
+    public String getNombre() {
+<span class="fc" id="L101">        return nombre;</span>
+    }
+
+    /**
+     * Obtiene los apellidos del participante.
+     * 
+     * @return Los apellidos del participante.
+     */
+    public String getApellidos() {
+<span class="nc" id="L110">        return apellidos;</span>
+    }
+
+    /**
+     * Obtiene la fecha de nacimiento del participante.
+     * 
+     * @return La fecha de nacimiento del participante.
+     */
+    public LocalDate getBirthDate() {
+<span class="nc" id="L119">        return birthDate;</span>
+    }
+
+    /**
+     * Obtiene el género del participante.
+     * 
+     * @return El género del participante.
+     */
+    public String getGenero() {
+<span class="nc" id="L128">        return genero;</span>
+    }
+
+    /**
+     * Obtiene la nacionalidad del participante.
+     * 
+     * @return La nacionalidad del participante.
+     */
+    public String getNacionalidad() {
+<span class="nc" id="L137">        return nacionalidad;</span>
+    }
+
+    /**
+     * Obtiene la deuda del participante.
+     * 
+     * @return La deuda del participante.
+     */
+    public double getDeuda() {
+<span class="nc" id="L146">        return deuda;</span>
+    }
+
+    /**
+     * Obtiene el nombre real del participante si está en estado INFILTRADO.
+     * 
+     * @return El nombre real del participante, o null si no está infiltrado.
+     */
+    public String getNombreReal() {
+<span class="fc" id="L155">        return nombreReal;</span>
+    }
+
+    /**
+     * Establece un nuevo nombre para el participante.
+     * 
+     * @param nombre El nuevo nombre del participante.
+     */
+    public void setNombre(String nombre) {
+<span class="nc" id="L164">        this.nombre = nombre;</span>
+<span class="nc" id="L165">    }</span>
+
+    /**
+     * Establece los nuevos apellidos del participante.
+     * 
+     * @param apellidos Los nuevos apellidos del participante.
+     */
+    public void setApellidos(String apellidos) {
+<span class="nc" id="L173">        this.apellidos = apellidos;</span>
+<span class="nc" id="L174">    }</span>
+
+    /**
+     * Establece el nuevo género del participante.
+     * 
+     * @param genero El nuevo género del participante.
+     */
+    public void setGenero(String genero) {
+<span class="nc" id="L182">        this.genero = genero;</span>
+<span class="nc" id="L183">    }</span>
+
+    /**
+     * Establece la nueva nacionalidad del participante.
+     * 
+     * @param nacionalidad La nueva nacionalidad del participante.
+     */
+    public void setNacionalidad(String nacionalidad) {
+<span class="nc" id="L191">        this.nacionalidad = nacionalidad;</span>
+<span class="nc" id="L192">    }</span>
+
+    /**
+     * Establece la nueva deuda del participante.
+     * 
+     * @param deuda La nueva deuda del participante.
+     */
+    public void setDeuda(double deuda) {
+<span class="nc" id="L200">        this.deuda = deuda;</span>
+<span class="nc" id="L201">    }</span>
+
+    /**
+     * Elimina al participante del juego si su estado es NORMAL.
+     * Si el participante está en estado INFILTRADO, se lanza una excepción {@link InfiltradoNoEliminableException}.
+     * 
+     * @throws InfiltradoNoEliminableException Si el participante está en estado INFILTRADO.
+     */
+    public void eliminar() throws InfiltradoNoEliminableException {
+<span class="nc bnc" id="L210" title="All 2 branches missed.">        if (this.estado == EstadoParticipante.INFILTRADO) {</span>
+<span class="nc" id="L211">            throw new InfiltradoNoEliminableException(&quot;No puedes eliminar a un infiltrado:&quot;, this.nombre, this.nombreReal);</span>
+        }
+<span class="nc" id="L213">        System.out.println(this.nombre + &quot; ha sido eliminado del juego.&quot;);</span>
+<span class="nc" id="L214">    }</span>
+
+    /**
+     * Obtiene la fecha de nacimiento del participante en formato &quot;dd/MM/yyyy&quot;.
+     * 
+     * @return La fecha de nacimiento formateada del participante.
+     */
+    public String getFormattedBirthDate() {
+<span class="nc" id="L222">        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;dd/MM/yyyy&quot;);</span>
+<span class="nc" id="L223">        return birthDate.format(formatter);</span>
+    }
+
+    /**
+     * Obtiene el estado actual del participante.
+     * 
+     * @return El estado del participante (INFILTRADO o NORMAL).
+     */
+    public EstadoParticipante getEstado() {
+<span class="fc" id="L232">        return estado;</span>
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span>test (1) (6 mar 2025 12:34:12)</div></body></html>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Pruebas.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (1) (6 mar 2025 12:34:12)</a> &gt; <a href="../../index.html" class="el_group">SquirrelGames</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">squirrelGames.pruebas</a> &gt; <span class="el_source">Pruebas.java</span></div><h1>Pruebas.java</h1><pre class="source lang-java linenums">package squirrelGames.pruebas;
+
+import squirrelGames.integrantesJuego.EstadoParticipante;
+import squirrelGames.integrantesJuego.Participantes;
+import squirrelGames.exceptions.InfiltradoNoEliminableException;
+import squirrelGames.exceptions.JugadorDuplicadoException;
+import squirrelGames.exceptions.PorcentajeInvalidoException;
+import squirrelGames.exceptions.SimulacionNoPermitidaException;
+import squirrelGames.integrantesJuego.pinkGuardsRanks.Manager;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+/**
+ * Clase que representa una prueba en el juego. Las pruebas son dirigidas por un responsable (Manager) 
+ * y pueden tener participantes que pueden ser eliminados o convertirse en vencedores según el desarrollo de la prueba.
+ */
+public class Pruebas {
+    
+	/**
+	 * Descripción de la prueba.
+	 */
+	private String descripcion;
+
+	/**
+	 * Lista de participantes eliminados en la prueba.
+	 */
+<span class="fc" id="L29">	private List&lt;Participantes&gt; eliminados = new ArrayList&lt;&gt;();</span>
+
+	/**
+	 * Nombre de la prueba.
+	 */
+	private String nombre;
+
+	/**
+	 * Lista de participantes inscritos en la prueba.
+	 */
+<span class="fc" id="L39">	private List&lt;Participantes&gt; participantesInscritos = new ArrayList&lt;&gt;();</span>
+
+	/**
+	 * Persona responsable de la prueba.
+	 */
+	private Manager responsable;
+
+	/**
+	 * Lista de participantes ganadores de la prueba.
+	 */
+<span class="fc" id="L49">	private List&lt;Participantes&gt; vencedores = new ArrayList&lt;&gt;();</span>
+
+
+    /**
+     * Constructor de la clase Pruebas. Inicializa la prueba con nombre, descripción y responsable.
+     *
+     * @param nombre       El nombre de la prueba.
+     * @param descripcion La descripción de la prueba.
+     * @param responsable El responsable (Manager) de la prueba.
+     */
+<span class="fc" id="L59">    public Pruebas(String nombre, String descripcion, Manager responsable) {</span>
+<span class="fc" id="L60">        this.nombre = nombre;</span>
+<span class="fc" id="L61">        this.descripcion = descripcion;</span>
+<span class="fc" id="L62">        this.responsable = responsable;</span>
+<span class="fc" id="L63">        this.participantesInscritos = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L64">        this.eliminados = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L65">        this.vencedores = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L66">    }</span>
+
+    /**
+     * Obtiene el nombre de la prueba.
+     *
+     * @return El nombre de la prueba.
+     */
+    public String getNombre() {
+<span class="nc" id="L74">        return nombre;</span>
+    }
+
+    /**
+     * Obtiene la descripción de la prueba.
+     *
+     * @return La descripción de la prueba.
+     */
+    public String getDescripcion() {
+<span class="nc" id="L83">        return descripcion;</span>
+    }
+
+    /**
+     * Obtiene la lista de participantes inscritos en la prueba.
+     *
+     * @return La lista de participantes inscritos.
+     */
+    public List&lt;Participantes&gt; getParticipantesInscritos() {
+<span class="fc" id="L92">        return participantesInscritos;</span>
+    }
+
+    /**
+     * Obtiene la lista de participantes eliminados en la prueba.
+     *
+     * @return La lista de participantes eliminados.
+     */
+    public List&lt;Participantes&gt; getEliminados() {
+<span class="nc" id="L101">        return eliminados;</span>
+    }
+
+    /**
+     * Obtiene la lista de vencedores de la prueba.
+     *
+     * @return La lista de vencedores de la prueba.
+     */
+    public List&lt;Participantes&gt; getVencedores() {
+<span class="nc" id="L110">        return vencedores;</span>
+    }
+
+    /**
+     * Obtiene el responsable (Manager) de la prueba.
+     *
+     * @return El responsable de la prueba.
+     */
+    public Manager getResponsable() {
+<span class="nc" id="L119">        return responsable;</span>
+    }
+
+    /**
+     * Inscribe un participante en la prueba. Si el participante ya está inscrito, lanza una excepción.
+     *
+     * @param participante El participante a inscribir.
+     * @throws JugadorDuplicadoException Si el jugador ya está inscrito.
+     */
+    public void inscribirParticipante(Participantes participante) throws JugadorDuplicadoException {
+<span class="fc bfc" id="L129" title="All 2 branches covered.">        for (Participantes p : participantesInscritos) {</span>
+<span class="pc bpc" id="L130" title="1 of 2 branches missed.">            if (p.getId().equals(participante.getId())) {</span>
+<span class="fc" id="L131">                throw new JugadorDuplicadoException(&quot;El jugador con ID &quot; + participante.getId() + &quot; ya está inscrito.&quot;);</span>
+            }
+        }
+<span class="fc" id="L134">        participantesInscritos.add(participante);</span>
+<span class="fc" id="L135">    }</span>
+
+    /**
+     * Simula el resultado de la prueba. Elimina un porcentaje de participantes de acuerdo a la simulación y determina los vencedores.
+     * 
+     * @param porcentajeEliminados El porcentaje de participantes que serán eliminados (entre 0 y 1).
+     * @return El número total de participantes eliminados en la simulación.
+     * @throws InfiltradoNoEliminableException Si un participante infiltrado no puede ser eliminado.
+     * @throws SimulacionNoPermitidaException Si no se puede simular la prueba sin un responsable asignado.
+     * @throws PorcentajeInvalidoException Si el porcentaje de eliminados no está entre 0 y 1.
+     */
+    public int simular(double porcentajeEliminados) throws InfiltradoNoEliminableException, SimulacionNoPermitidaException, PorcentajeInvalidoException {
+<span class="fc bfc" id="L147" title="All 2 branches covered.">        if (responsable == null) {</span>
+<span class="fc" id="L148">            throw new SimulacionNoPermitidaException(&quot;No se puede simular la prueba sin un Manager asignado.&quot;);</span>
+        }
+        
+<span class="pc bpc" id="L151" title="1 of 4 branches missed.">        if (porcentajeEliminados &lt; 0 || porcentajeEliminados &gt; 1) {</span>
+<span class="fc" id="L152">            throw new PorcentajeInvalidoException(&quot;El porcentaje de eliminados debe estar entre 0 y 1.&quot;);</span>
+        }
+
+<span class="fc" id="L155">        Random random = new Random();</span>
+<span class="fc" id="L156">        List&lt;Participantes&gt; eliminables = new ArrayList&lt;&gt;();</span>
+
+<span class="pc bpc" id="L158" title="1 of 2 branches missed.">        for (Participantes participante : participantesInscritos) {</span>
+<span class="pc bpc" id="L159" title="1 of 2 branches missed.">            if (participante.getEstado() == EstadoParticipante.INFILTRADO) {</span>
+<span class="fc" id="L160">                throw new InfiltradoNoEliminableException(&quot;No se puede eliminar al participante infiltrado:&quot;, participante.getNombre(), participante.getNombreReal());</span>
+            }
+<span class="nc" id="L162">            eliminables.add(participante);</span>
+        }
+
+<span class="nc" id="L165">        int totalEliminados = (int) (participantesInscritos.size() * porcentajeEliminados);</span>
+<span class="nc" id="L166">        totalEliminados = Math.min(totalEliminados, eliminables.size());</span>
+
+<span class="nc bnc" id="L168" title="All 2 branches missed.">        for (int i = 0; i &lt; totalEliminados; i++) {</span>
+<span class="nc" id="L169">            int index = random.nextInt(eliminables.size());</span>
+<span class="nc" id="L170">            Participantes eliminado = eliminables.remove(index);</span>
+<span class="nc" id="L171">            participantesInscritos.remove(eliminado);</span>
+<span class="nc" id="L172">            eliminados.add(eliminado);</span>
+        }
+
+<span class="nc" id="L175">        vencedores.addAll(participantesInscritos);</span>
+
+<span class="nc" id="L177">        return totalEliminados;</span>
+    }
+
+    /**
+     * Calcula el porcentaje de éxito de la prueba, basado en el número de vencedores y eliminados.
+     *
+     * @return El porcentaje de éxito de la prueba.
+     */
+    public double calcularPorcentajeExito() {
+<span class="nc bnc" id="L186" title="All 2 branches missed.">        if (vencedores.size() + eliminados.size() == 0) {</span>
+<span class="nc" id="L187">            return 0;</span>
+        }
+<span class="nc" id="L189">        return (vencedores.size() * 100.0) / (vencedores.size() + eliminados.size());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span>test (1) (6 mar 2025 12:34:12)</div></body></html>

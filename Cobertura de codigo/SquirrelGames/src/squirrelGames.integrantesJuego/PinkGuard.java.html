@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>PinkGuard.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (1) (6 mar 2025 12:34:12)</a> &gt; <a href="../../index.html" class="el_group">SquirrelGames</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">squirrelGames.integrantesJuego</a> &gt; <span class="el_source">PinkGuard.java</span></div><h1>PinkGuard.java</h1><pre class="source lang-java linenums">package squirrelGames.integrantesJuego;
+
+import squirrelGames.exceptions.SupervisorInvalidoException;
+
+/**
+ * Clase que representa a un &quot;PinkGuard&quot;, un tipo de integrante dentro del juego con un
+ * rango determinado y la posibilidad de tener un supervisor.
+ * Esta clase permite asignar supervisores a los PinkGuards, siempre que el supervisor
+ * tenga un rango superior al subordinado.
+ */
+public class PinkGuard {
+	
+	/**
+	 * Apellidos del Pink Guard.
+	 */
+	protected String apellidos;
+
+	/**
+	 * Identificador único del Pink Guard.
+	 */
+	private String id;
+
+	/**
+	 * Nombre del Pink Guard.
+	 */
+	private String nombre;
+
+	/**
+	 * Rango del Pink Guard.
+	 */
+	private String rango;
+
+	/**
+	 * Supervisor del Pink Guard.
+	 */
+	private PinkGuard supervisor;
+
+
+    /**
+     * Constructor de la clase PinkGuard.
+     * 
+     * @param id El identificador único del PinkGuard.
+     * @param nombre El nombre del PinkGuard.
+     * @param apellidos Los apellidos del PinkGuard.
+     * @param rango El rango del PinkGuard (por ejemplo, &quot;worker&quot;, &quot;soldier&quot;, &quot;manager&quot;).
+     */
+<span class="fc" id="L47">    public PinkGuard(String id, String nombre, String apellidos, String rango) {</span>
+<span class="fc" id="L48">        this.id = id;</span>
+<span class="fc" id="L49">        this.nombre = nombre;</span>
+<span class="fc" id="L50">        this.rango = rango;</span>
+<span class="fc" id="L51">    }</span>
+
+    /**
+     * Obtiene el identificador único del PinkGuard.
+     * 
+     * @return El identificador del PinkGuard.
+     */
+    public String getId() {
+<span class="nc" id="L59">        return id;</span>
+    }
+
+    /**
+     * Obtiene el nombre del PinkGuard.
+     * 
+     * @return El nombre del PinkGuard.
+     */
+    public String getNombre() {
+<span class="nc" id="L68">        return nombre;</span>
+    }
+
+    /**
+     * Obtiene los apellidos del PinkGuard.
+     * 
+     * @return Los apellidos del PinkGuard.
+     */
+    public String getApellidos() {
+<span class="nc" id="L77">        return apellidos;</span>
+    }
+
+    /**
+     * Obtiene el rango del PinkGuard.
+     * 
+     * @return El rango del PinkGuard.
+     */
+    public String getRango() {
+<span class="fc" id="L86">        return rango;</span>
+    }
+
+    /**
+     * Obtiene el supervisor del PinkGuard.
+     * 
+     * @return El supervisor del PinkGuard, o null si no tiene supervisor asignado.
+     */
+    public PinkGuard getSupervisor() {
+<span class="fc" id="L95">        return supervisor;</span>
+    }
+
+    /**
+     * Establece un supervisor para el PinkGuard.
+     * Este método verifica que el supervisor tenga un rango superior antes de asignarlo.
+     * 
+     * @param supervisor El PinkGuard que se desea asignar como supervisor.
+     * @throws SupervisorInvalidoException Si el supervisor es nulo o tiene un rango igual o inferior.
+     */
+    public void setSupervisor(PinkGuard supervisor) throws SupervisorInvalidoException {
+<span class="pc bpc" id="L106" title="1 of 2 branches missed.">        if (supervisor == null) {</span>
+<span class="nc" id="L107">            throw new SupervisorInvalidoException(&quot;El supervisor no puede ser nulo.&quot;);</span>
+        }
+
+<span class="fc" id="L110">        String rangoSupervisor = supervisor.getRango();</span>
+<span class="fc" id="L111">        String rangoSubordinado = this.getRango();</span>
+
+<span class="fc" id="L113">        int nivelSupervisor = obtenerNivelRango(rangoSupervisor);</span>
+<span class="fc" id="L114">        int nivelSubordinado = obtenerNivelRango(rangoSubordinado);</span>
+
+<span class="fc bfc" id="L116" title="All 2 branches covered.">        if (nivelSupervisor &lt;= nivelSubordinado) {</span>
+<span class="fc" id="L117">            throw new SupervisorInvalidoException(</span>
+<span class="fc" id="L118">                &quot;El supervisor debe ser de un rango superior. &quot; +</span>
+<span class="fc" id="L119">                &quot;Intentaste asignar a un &quot; + rangoSupervisor + &quot; como supervisor de un &quot; + rangoSubordinado + &quot;.&quot;</span>
+            );
+        }
+
+<span class="fc" id="L123">        this.supervisor = supervisor;</span>
+<span class="fc" id="L124">    }</span>
+
+    /**
+     * Obtiene el nivel numérico asociado a un rango.
+     * El rango &quot;worker&quot; tiene nivel 1, &quot;soldier&quot; tiene nivel 2 y &quot;manager&quot; tiene nivel 3.
+     * Otros rangos tienen nivel 0.
+     * 
+     * @param rango El rango a evaluar.
+     * @return El nivel numérico correspondiente al rango.
+     */
+    private int obtenerNivelRango(String rango) {
+<span class="pc bpc" id="L135" title="2 of 4 branches missed.">        return switch (rango.toLowerCase()) {</span>
+<span class="fc" id="L136">            case &quot;worker&quot; -&gt; 1;</span>
+<span class="nc" id="L137">            case &quot;soldier&quot; -&gt; 2;</span>
+<span class="fc" id="L138">            case &quot;manager&quot; -&gt; 3;</span>
+<span class="nc" id="L139">            default -&gt; 0;</span>
+        };
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span>test (1) (6 mar 2025 12:34:12)</div></body></html>

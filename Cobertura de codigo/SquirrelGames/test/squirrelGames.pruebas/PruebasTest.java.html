@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>PruebasTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (1) (6 mar 2025 12:34:12)</a> &gt; <a href="../../index.html" class="el_group">SquirrelGames</a> &gt; <a href="../index.html" class="el_bundle">test</a> &gt; <a href="index.source.html" class="el_package">squirrelGames.pruebas</a> &gt; <span class="el_source">PruebasTest.java</span></div><h1>PruebasTest.java</h1><pre class="source lang-java linenums">package squirrelGames.pruebas;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.time.LocalDate;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import squirrelGames.exceptions.InfiltradoNoEliminableException;
+import squirrelGames.exceptions.JugadorDuplicadoException;
+import squirrelGames.exceptions.PorcentajeInvalidoException;
+import squirrelGames.exceptions.SimulacionNoPermitidaException;
+import squirrelGames.integrantesJuego.EstadoParticipante;
+import squirrelGames.integrantesJuego.Participantes;
+import squirrelGames.integrantesJuego.pinkGuardsRanks.Manager;
+
+<span class="fc" id="L19">class PruebasTest {</span>
+
+private Pruebas prueba;
+private Pruebas pruebasinmanager;
+private Manager manager1;
+	
+
+@BeforeEach
+void setup() {
+<span class="fc" id="L28">	manager1 = new Manager (&quot;Jefazo&quot;, &quot;Cristiano&quot; , &quot;Ronaldo dos Santos&quot;, &quot;WessonModel10&quot; , 50);</span>
+<span class="fc" id="L29">	prueba = new Pruebas (&quot;Gol en porteria&quot;, &quot;Prueba de punteria&quot;, manager1);</span>
+<span class="fc" id="L30">	pruebasinmanager = new Pruebas(&quot;Pruebas de testeo sin un manager&quot; , &quot;Prueba testeo&quot;, null);</span>
+<span class="fc" id="L31">}</span>
+
+//Testeo para crear un participante
+@Test
+@DisplayName(&quot;Prueba de creacion de un participante (Buscando la excepcion)&quot;)
+public void inscribir1ParticipanteCorrectamente() throws JugadorDuplicadoException {
+<span class="fc" id="L37">    Participantes p1 = new Participantes(&quot;100&quot;, &quot;Joselito&quot; , &quot;Gutierrez Perez&quot; , LocalDate.of(1995, 6, 15) , &quot;Masculino&quot;, &quot;Venezolano&quot; , 40000 , EstadoParticipante.NORMAL , &quot;Joselito&quot; );</span>
+<span class="fc" id="L38">    prueba.inscribirParticipante(p1);</span>
+<span class="fc" id="L39">    assertEquals(1, prueba.getParticipantesInscritos().size());</span>
+<span class="fc" id="L40">}</span>
+
+
+//Testeo para comprobar lo mismo pero estando duplicado
+@Test
+@DisplayName(&quot;Prueba para intentar añadir un participante duplicado&quot;)
+public void inscribir1Participanteyaexistente() throws JugadorDuplicadoException {
+<span class="fc" id="L47">	Participantes p1 = new Participantes(&quot;100&quot;, &quot;Joselito&quot; , &quot;Gutierrez Perez&quot; , LocalDate.of(1995, 6, 15) , &quot;Masculino&quot;, &quot;Venezolano&quot; , 40000 , EstadoParticipante.NORMAL , &quot;Joselito&quot; );</span>
+<span class="fc" id="L48">	prueba.inscribirParticipante(p1);</span>
+<span class="pc" id="L49">	 assertThrows(JugadorDuplicadoException.class, () -&gt; prueba.inscribirParticipante(p1));</span>
+<span class="fc" id="L50">}</span>
+
+//Testeo para comprobar la excepcion del porcentaje
+@Test
+@DisplayName(&quot;Prueba para comprobar el limite de porcentaje de una prueba&quot;)
+public void simularPruebaConPorcentajeInvalido() throws PorcentajeInvalidoException {
+<span class="pc" id="L56">	assertThrows(PorcentajeInvalidoException.class, () -&gt; prueba.simular(1.5));</span>
+<span class="fc" id="L57">}</span>
+
+//Testeo para evitar eliminar un infiltrado y que salte un Exception
+@Test
+@DisplayName(&quot;Prueba para intentar eliminar un infiltrado&quot;)
+public void testEliminarInfiltradoLanzaExcepcion() throws JugadorDuplicadoException, InfiltradoNoEliminableException {
+ 
+<span class="fc" id="L64">    Participantes infiltrado = new Participantes(&quot;101&quot;, &quot;Lionel&quot;, &quot;Andres Messi&quot;, LocalDate.of(1987, 6, 24), &quot;Masculino&quot;, &quot;Argentino&quot;, 50000000, EstadoParticipante.INFILTRADO, &quot;Infiltrado&quot;);</span>
+<span class="fc" id="L65">    prueba.inscribirParticipante(infiltrado);</span>
+<span class="fc" id="L66">    assertTrue(prueba.getParticipantesInscritos().contains(infiltrado));</span>
+<span class="pc" id="L67">    assertThrows(InfiltradoNoEliminableException.class, () -&gt; prueba.simular(1.0));</span>
+<span class="fc" id="L68">}</span>
+
+//Testeo para probar la excepcion Simulacion no permitida (no hay manager)
+@Test 
+@DisplayName(&quot;Prueba para probar una simulacion sin manager&quot;)
+public void simularSinManagerLanzaExcepcion() throws SimulacionNoPermitidaException {
+<span class="pc" id="L74">    assertThrows(SimulacionNoPermitidaException.class, () -&gt; pruebasinmanager.simular(0.5));</span>
+<span class="fc" id="L75">}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span>test (1) (6 mar 2025 12:34:12)</div></body></html>

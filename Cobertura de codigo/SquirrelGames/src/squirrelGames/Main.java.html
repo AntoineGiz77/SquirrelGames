@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Main.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (1) (6 mar 2025 12:34:12)</a> &gt; <a href="../../index.html" class="el_group">SquirrelGames</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">squirrelGames</a> &gt; <span class="el_source">Main.java</span></div><h1>Main.java</h1><pre class="source lang-java linenums">package squirrelGames;
+
+import squirrelGames.exceptions.*;
+import squirrelGames.integrantesJuego.*;
+import squirrelGames.integrantesJuego.pinkGuardsRanks.*;
+import squirrelGames.juegos.Juegos;
+import squirrelGames.pruebas.Pruebas;
+import java.time.LocalDate;
+
+/**
+ * La clase Main es la entrada principal de la simulación del juego de supervivencia.
+ * Esta clase se encarga de crear los participantes, asignar pruebas, y simular los resultados.
+
+ */
+<span class="nc" id="L15">public class Main {</span>
+    
+    /**
+     * Método principal que ejecuta la simulación de las pruebas de los participantes.
+     * Inicializa el juego, los participantes, los Pink Guards y las pruebas.
+     * Lanza excepciones relacionadas con la simulación de las pruebas.
+     *
+     * @param args Argumentos de línea de comandos (no utilizados).
+     * @throws JugadorDuplicadoException Si se detecta un jugador duplicado al agregarlo.
+     * @throws SimulacionNoPermitidaException Si la simulación no es válida.
+     * @throws PorcentajeInvalidoException Si el porcentaje de eliminados es inválido.
+     */
+    public static void main(String[] args) throws JugadorDuplicadoException, SimulacionNoPermitidaException, PorcentajeInvalidoException {
+        try {
+            // Creación del juego
+<span class="nc" id="L30">            Juegos juego = new Juegos(2025, &quot;Seúl&quot;);</span>
+
+            // Creación de participantes
+<span class="nc" id="L33">            Participantes p1 = new Participantes(&quot;P001&quot;, &quot;Juan&quot;, &quot;Pérez&quot;, LocalDate.of(1990, 5, 10), &quot;M&quot;, &quot;España&quot;, 5000, EstadoParticipante.NORMAL, null);</span>
+<span class="nc" id="L34">            Participantes p2 = new Participantes(&quot;P002&quot;, &quot;Juani&quot;, &quot;López&quot;, LocalDate.of(1995, 7, 20), &quot;F&quot;, &quot;México&quot;, 0, EstadoParticipante.INFILTRADO, &quot;María García&quot;);</span>
+<span class="nc" id="L35">            Participantes p3 = new Participantes(&quot;P003&quot;, &quot;Carlos&quot;, &quot;Gómez&quot;, LocalDate.of(1985, 11, 15), &quot;M&quot;, &quot;Argentina&quot;, 3000, EstadoParticipante.NORMAL, null);</span>
+<span class="nc" id="L36">            Participantes p4 = new Participantes(&quot;P004&quot;, &quot;Sofía&quot;, &quot;Martínez&quot;, LocalDate.of(1992, 3, 5), &quot;F&quot;, &quot;Colombia&quot;, 25000, EstadoParticipante.NORMAL, &quot;Sofía López&quot;);</span>
+<span class="nc" id="L37">            Participantes p5 = new Participantes(&quot;P005&quot;, &quot;Andrés&quot;, &quot;Fernández&quot;, LocalDate.of(1988, 9, 22), &quot;M&quot;, &quot;Chile&quot;, 4500, EstadoParticipante.NORMAL, null);</span>
+<span class="nc" id="L38">            Participantes p6 = new Participantes(&quot;P006&quot;, &quot;Lucía&quot;, &quot;Hernández&quot;, LocalDate.of(1997, 12, 30), &quot;F&quot;, &quot;Perú&quot;, 6200, EstadoParticipante.NORMAL, null);</span>
+<span class="nc" id="L39">            Participantes p7 = new Participantes(&quot;P007&quot;, &quot;Juan&quot;, &quot;García&quot;, LocalDate.of(1991, 4, 18), &quot;M&quot;, &quot;España&quot;, 5000, EstadoParticipante.NORMAL, null);</span>
+<span class="nc" id="L40">            Participantes p8 = new Participantes(&quot;P008&quot;, &quot;Rubén&quot;, &quot;Ruiz&quot;, LocalDate.of(1996, 1, 10), &quot;M&quot;, &quot;China&quot;, 0, EstadoParticipante.INFILTRADO, &quot;Joseba Flores&quot;);</span>
+<span class="nc" id="L41">            Participantes p9 = new Participantes(&quot;P009&quot;, &quot;José&quot;, &quot;López&quot;, LocalDate.of(1990, 6, 25), &quot;M&quot;, &quot;España&quot;, 5200, EstadoParticipante.NORMAL, null);</span>
+<span class="nc" id="L42">            Participantes p10 = new Participantes(&quot;P010&quot;, &quot;Elena&quot;, &quot;Pérez&quot;, LocalDate.of(1994, 2, 3), &quot;F&quot;, &quot;México&quot;, 12000, EstadoParticipante.NORMAL, null);</span>
+
+            // Agregar participantes al juego
+<span class="nc" id="L45">            juego.agregarParticipante(p1);</span>
+<span class="nc" id="L46">            juego.agregarParticipante(p2);</span>
+<span class="nc" id="L47">            juego.agregarParticipante(p3);</span>
+<span class="nc" id="L48">            juego.agregarParticipante(p4);</span>
+<span class="nc" id="L49">            juego.agregarParticipante(p5);</span>
+<span class="nc" id="L50">            juego.agregarParticipante(p6);</span>
+<span class="nc" id="L51">            juego.agregarParticipante(p7);</span>
+<span class="nc" id="L52">            juego.agregarParticipante(p8);</span>
+<span class="nc" id="L53">            juego.agregarParticipante(p9);</span>
+<span class="nc" id="L54">            juego.agregarParticipante(p10);</span>
+
+            // Creación de Pink Guards
+<span class="nc" id="L57">            Manager manager = new Manager(&quot;M001&quot;, &quot;Carlos&quot;, &quot;Gómez&quot;, &quot;WessonModel10&quot;, 10);</span>
+<span class="nc" id="L58">            Soldier soldier = new Soldier(&quot;S001&quot;, &quot;Luis&quot;, &quot;Martínez&quot;, &quot;MP5&quot;, 30);</span>
+<span class="nc" id="L59">            Worker worker = new Worker(&quot;W001&quot;, &quot;Ana&quot;, &quot;Rodríguez&quot;, &quot;Limpieza y mantenimiento&quot;);</span>
+
+            // Asignación de Pink Guards al juego
+<span class="nc" id="L62">            juego.agregarPinkGuard(manager);</span>
+<span class="nc" id="L63">            juego.agregarPinkGuard(soldier);</span>
+<span class="nc" id="L64">            juego.agregarPinkGuard(worker);</span>
+
+            // Asignación de supervisores
+<span class="nc" id="L67">            soldier.setSupervisor(manager);</span>
+<span class="nc" id="L68">            worker.setSupervisor(manager);</span>
+
+            // Creación de pruebas
+<span class="nc" id="L71">            Pruebas prueba1 = new Pruebas(&quot;Carrera de obstáculos&quot;, &quot;Una prueba intensa con múltiples obstáculos.&quot;, manager);</span>
+<span class="nc" id="L72">            Pruebas prueba2 = new Pruebas(&quot;Prueba de resistencia&quot;, &quot;Prueba donde los participantes deben resistir durante mucho tiempo.&quot;, manager);</span>
+<span class="nc" id="L73">            Pruebas prueba3 = new Pruebas(&quot;Juego de memoria&quot;, &quot;Prueba donde se debe recordar secuencias complejas.&quot;, manager);</span>
+<span class="nc" id="L74">            Pruebas prueba4 = new Pruebas(&quot;Escape laberinto&quot;, &quot;Prueba donde los jugadores deben encontrar la salida de un laberinto.&quot;, manager);</span>
+
+            // Inscripción de participantes a las pruebas
+<span class="nc" id="L77">            prueba1.inscribirParticipante(p1);</span>
+<span class="nc" id="L78">            prueba1.inscribirParticipante(p2);</span>
+<span class="nc" id="L79">            prueba1.inscribirParticipante(p3);</span>
+<span class="nc" id="L80">            prueba1.inscribirParticipante(p4);</span>
+<span class="nc" id="L81">            prueba1.inscribirParticipante(p5);</span>
+<span class="nc" id="L82">            prueba1.inscribirParticipante(p6);</span>
+<span class="nc" id="L83">            prueba1.inscribirParticipante(p7);</span>
+<span class="nc" id="L84">            prueba1.inscribirParticipante(p8);</span>
+<span class="nc" id="L85">            prueba1.inscribirParticipante(p9);</span>
+<span class="nc" id="L86">            prueba1.inscribirParticipante(p10);</span>
+
+            // Inscripción para las demás pruebas
+<span class="nc" id="L89">            prueba2.inscribirParticipante(p1);</span>
+<span class="nc" id="L90">            prueba2.inscribirParticipante(p2);</span>
+<span class="nc" id="L91">            prueba2.inscribirParticipante(p3);</span>
+<span class="nc" id="L92">            prueba2.inscribirParticipante(p4);</span>
+<span class="nc" id="L93">            prueba2.inscribirParticipante(p5);</span>
+<span class="nc" id="L94">            prueba2.inscribirParticipante(p6);</span>
+<span class="nc" id="L95">            prueba2.inscribirParticipante(p7);</span>
+<span class="nc" id="L96">            prueba2.inscribirParticipante(p8);</span>
+<span class="nc" id="L97">            prueba2.inscribirParticipante(p9);</span>
+<span class="nc" id="L98">            prueba2.inscribirParticipante(p10);</span>
+
+<span class="nc" id="L100">            prueba3.inscribirParticipante(p1);</span>
+<span class="nc" id="L101">            prueba3.inscribirParticipante(p2);</span>
+<span class="nc" id="L102">            prueba3.inscribirParticipante(p3);</span>
+<span class="nc" id="L103">            prueba3.inscribirParticipante(p4);</span>
+<span class="nc" id="L104">            prueba3.inscribirParticipante(p5);</span>
+<span class="nc" id="L105">            prueba3.inscribirParticipante(p6);</span>
+<span class="nc" id="L106">            prueba3.inscribirParticipante(p7);</span>
+<span class="nc" id="L107">            prueba3.inscribirParticipante(p8);</span>
+<span class="nc" id="L108">            prueba3.inscribirParticipante(p9);</span>
+<span class="nc" id="L109">            prueba3.inscribirParticipante(p10);</span>
+
+<span class="nc" id="L111">            prueba4.inscribirParticipante(p1);</span>
+<span class="nc" id="L112">            prueba4.inscribirParticipante(p2);</span>
+<span class="nc" id="L113">            prueba4.inscribirParticipante(p3);</span>
+<span class="nc" id="L114">            prueba4.inscribirParticipante(p4);</span>
+<span class="nc" id="L115">            prueba4.inscribirParticipante(p5);</span>
+<span class="nc" id="L116">            prueba4.inscribirParticipante(p6);</span>
+<span class="nc" id="L117">            prueba4.inscribirParticipante(p7);</span>
+<span class="nc" id="L118">            prueba4.inscribirParticipante(p8);</span>
+<span class="nc" id="L119">            prueba4.inscribirParticipante(p9);</span>
+<span class="nc" id="L120">            prueba4.inscribirParticipante(p10);</span>
+
+            // Agregar pruebas al juego
+<span class="nc" id="L123">            juego.agregarPruebas(prueba1);</span>
+<span class="nc" id="L124">            juego.agregarPruebas(prueba2);</span>
+<span class="nc" id="L125">            juego.agregarPruebas(prueba3);</span>
+<span class="nc" id="L126">            juego.agregarPruebas(prueba4);</span>
+
+            // Simulación de las pruebas
+<span class="nc" id="L129">            System.out.println(&quot;Simulando las pruebas...&quot;);</span>
+            try {
+<span class="nc" id="L131">                simularPrueba(prueba1, 0.15);</span>
+<span class="nc" id="L132">                simularPrueba(prueba2, 0.25);</span>
+<span class="nc" id="L133">                simularPrueba(prueba3, 0.65);</span>
+<span class="nc" id="L134">                simularPrueba(prueba4, 0.8);</span>
+<span class="nc" id="L135">            } catch (InfiltradoNoEliminableException e) {</span>
+<span class="nc" id="L136">                System.err.println(&quot;Error al eliminar infiltrado: &quot; + e.getMessage());</span>
+            }
+
+<span class="nc" id="L139">        } catch (SupervisorInvalidoException e) {</span>
+<span class="nc" id="L140">            System.err.println(&quot;Error: &quot; + e.getMessage());</span>
+        }
+<span class="nc" id="L142">    }</span>
+
+    /**
+     * Simula una prueba en el juego.
+     * 
+     * @param prueba La prueba a simular.
+     * @param porcentajeEliminados El porcentaje de participantes eliminados en la prueba.
+     * @throws InfiltradoNoEliminableException Si un infiltrado no puede ser eliminado.
+     * @throws SimulacionNoPermitidaException Si la simulación no está permitida.
+     * @throws PorcentajeInvalidoException Si el porcentaje de eliminados es inválido.
+     */
+    public static void simularPrueba(Pruebas prueba, double porcentajeEliminados) throws InfiltradoNoEliminableException, SimulacionNoPermitidaException, PorcentajeInvalidoException {
+        try {
+<span class="nc" id="L155">            int eliminados = prueba.simular(porcentajeEliminados);</span>
+<span class="nc" id="L156">            System.out.println(&quot;Prueba: &quot; + prueba.getNombre());</span>
+<span class="nc" id="L157">            System.out.println(&quot;Descripción: &quot; + prueba.getDescripcion());</span>
+<span class="nc" id="L158">            System.out.println(&quot;Número de eliminados: &quot; + eliminados);</span>
+<span class="nc" id="L159">            System.out.println(&quot;Porcentaje de éxito: &quot; + prueba.calcularPorcentajeExito() + &quot;%&quot;);</span>
+<span class="nc" id="L160">            System.out.println(&quot;Eliminados:&quot;);</span>
+
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            for (Participantes eliminado : prueba.getEliminados()) {</span>
+<span class="nc" id="L163">                System.out.println(&quot;- &quot; + eliminado.getNombre() + &quot; &quot; + eliminado.getApellidos());</span>
+            }
+
+<span class="nc" id="L166">            System.out.println(&quot;Vencedores:&quot;);</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">            for (Participantes vencedor : prueba.getVencedores()) {</span>
+<span class="nc" id="L168">                System.out.println(&quot;- &quot; + vencedor.getNombre() + &quot; &quot; + vencedor.getApellidos());</span>
+            }
+<span class="nc" id="L170">            System.out.println();</span>
+<span class="nc" id="L171">        } catch (InfiltradoNoEliminableException e) {</span>
+<span class="nc" id="L172">            System.err.println(&quot;Error al intentar eliminar a un participante:&quot;);</span>
+<span class="nc" id="L173">            System.err.println(&quot;Nombre participante: &quot; + e.getNombreParticipante());</span>
+<span class="nc" id="L174">            System.err.println(&quot;Nombre real: &quot; + e.getNombreReal());</span>
+        }
+<span class="nc" id="L176">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span>test (1) (6 mar 2025 12:34:12)</div></body></html>

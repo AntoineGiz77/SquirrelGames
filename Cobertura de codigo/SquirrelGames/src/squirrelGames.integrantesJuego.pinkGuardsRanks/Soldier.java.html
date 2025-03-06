@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Soldier.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (1) (6 mar 2025 12:34:12)</a> &gt; <a href="../../index.html" class="el_group">SquirrelGames</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">squirrelGames.integrantesJuego.pinkGuardsRanks</a> &gt; <span class="el_source">Soldier.java</span></div><h1>Soldier.java</h1><pre class="source lang-java linenums">package squirrelGames.integrantesJuego.pinkGuardsRanks;
+
+import squirrelGames.integrantesJuego.PinkGuard;
+
+/**
+ * Clase que representa a un Pink Guard con el rango de &quot;Soldier&quot;.
+ * Los Soldiers tienen acceso a un arma y munición para realizar tareas específicas.
+ */
+public class Soldier extends PinkGuard {
+
+	/**
+	 * Arma equipada por el soldado.
+	 */
+	private ArmasSoldier arma;
+
+	/**
+	 * Munición disponible para el soldado.
+	 */
+	private int municion;
+
+
+    /**
+     * Constructor de la clase Soldier.
+     * 
+     * @param id Identificador único del Soldier.
+     * @param nombre Nombre del Soldier.
+     * @param apellidos Apellidos del Soldier.
+     * @param arma Nombre del arma asignada al Soldier (en formato String).
+     * @param municion Cantidad de munición inicial para el arma.
+     */
+    public Soldier(String id, String nombre, String apellidos, String arma, int municion) {
+<span class="nc" id="L32">        super(id, nombre, apellidos, &quot;Soldier&quot;);</span>
+<span class="nc" id="L33">        this.arma = ArmasSoldier.valueOf(arma); </span>
+<span class="nc" id="L34">        this.municion = municion;</span>
+<span class="nc" id="L35">    }</span>
+
+    /**
+     * Establece el arma del Soldier.
+     * 
+     * @param arma El arma que se asignará al Soldier.
+     */
+    public void setArma(ArmasSoldier arma) {
+<span class="nc" id="L43">        this.arma = arma;</span>
+<span class="nc" id="L44">    }</span>
+
+    /**
+     * Obtiene la cantidad de munición disponible para el Soldier.
+     * 
+     * @return Cantidad de munición.
+     */
+    public int getMunicion() {
+<span class="nc" id="L52">        return municion;</span>
+    }
+
+    /**
+     * Establece la cantidad de munición disponible para el Soldier.
+     * 
+     * @param municion La cantidad de munición que se asignará.
+     */
+    public void setMunicion(int municion) {
+<span class="nc" id="L61">        this.municion = municion;</span>
+<span class="nc" id="L62">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span>test (1) (6 mar 2025 12:34:12)</div></body></html>
