@@ -8,6 +8,11 @@ Software para la gestión de los juegos anuales organizados por **Squirrel Games
 - **Gestión de pruebas:** Permite simular pruebas, calcular el éxito y gestionar eliminaciones.
 - **Validaciones y excepciones personalizadas:** Asegura que todas las reglas del juego sean respetadas mediante excepciones.
 
+## **Documentanción**
+La documentación del proyecto en Javadoc está disponible en línea. Puedes consultarla haciendo clic en el siguiente enlace:
+
+[Visitar la documentación Javadoc](https://antoinegiz77.github.io/SquirrelGames/)
+
 ## **Instalación**
 
 ### Prerrequisitos
