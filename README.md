@@ -80,42 +80,63 @@ Los empleados están organizados en tres rangos:
 ## **Estructura del Proyecto**
 
 ```
-/SquirrelGames
-│── /src
-│   ├── squirrelGames/
+SquirrelGames
+│── JRE System Library [jre]
+│── src
+│   ├── squirrelGames
 │   │   ├── Main.java
-│   │   ├── exceptions/
+│   │   ├── exceptions
 │   │   │   ├── InfiltradoNoEliminableException.java
 │   │   │   ├── JugadorDuplicadoException.java
 │   │   │   ├── PorcentajeInvalidoException.java
 │   │   │   ├── SimulacionNoPermitidaException.java
 │   │   │   ├── SupervisorInvalidoException.java
-│   │   ├── integrantesJuego/
+│   │   ├── integrantesJuego
 │   │   │   ├── EstadoParticipante.java
 │   │   │   ├── Participantes.java
 │   │   │   ├── PinkGuard.java
-│   │   │   ├── pinkGuardsRanks/
+│   │   │   ├── pinkGuardsRanks
 │   │   │   │   ├── ArmasManager.java
 │   │   │   │   ├── ArmasSoldier.java
 │   │   │   │   ├── Manager.java
 │   │   │   │   ├── Soldier.java
 │   │   │   │   ├── Worker.java
-│   │   ├── juegos/
+│   │   ├── juegos
 │   │   │   ├── Juegos.java
-│   │   ├── pruebas/
+│   │   ├── pruebas
 │   │   │   ├── Pruebas.java
-│── /doc  (Javadoc y documentación)
+│── Cobertura de código (Porcentaje de cobertura)
+│   ├── jacoco-resources
+│   ├── SquirrelGames
+│   ├── index.html
+│   ├── jacoco-sessions.html
+│── doc (Documentación y Javadoc)
+│   ├── squirrelGames
+│── test (Pruebas Unitarias)
+│   ├── squirrelGames
+│   │   ├── integrantesJuego
+│   │   ├── juegos
+│   │   ├── pruebas
+│── pom.xml
 │── README.md
-│── .gitignore
+
 ```
 
 ## **Tecnologías Utilizadas**
 
 - **Java 23**
-- **JUnit** (para pruebas unitarias)
+- **JUnit5** (para pruebas unitarias)
+- **Maven**
+- **Jira** (para organización del proyecto)
+- **Discord** (para comunicación)
+- **Intellij Community Edition**
+- **Visual Studio Code**
+- **Github Desktop**
+- **GitKraken Desktop**
 
 ## **Contacto**
 
 - 💙 GitHub: Felipe - [https://github.com/sargon494](https://github.com/sargon494)
 - 💙 GitHub: Antoine - [https://github.com/AntoineGiz77](https://github.com/AntoineGiz77)
 - 💙 GitHub: Nestor - [https://github.com/Nestorrr11](https://github.com/Nestorrr11)
+- 💙 GitHub: David - [https://github.com/DavidPP161](https://github.com/DavidPP161)
